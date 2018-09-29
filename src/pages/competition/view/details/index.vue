@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div>
     <HeaderTop></HeaderTop>
 
     <ul class="site">
@@ -119,12 +119,12 @@ export default {
       }
     }
     &:nth-of-type(1) span::before {
-      background: url("../../../../assets/image/list_button1.png") no-repeat center
+      background: url("../../image/list_button1.png") no-repeat center
         center;
       background-size: px(96) px(79);
     }
     &:nth-of-type(2) span::before {
-      background: url("../../../../assets/image/list_button2.png") no-repeat center
+      background: url("../../image/list_button2.png") no-repeat center
         center;
       background-size: px(96) px(79);
     }
@@ -132,7 +132,7 @@ export default {
       border: none;
     }
     &:nth-of-type(3) span::before {
-      background: url("../../../../assets/image/list_button3.png") no-repeat center
+      background: url("../../image/list_button3.png") no-repeat center
         center;
       background-size: px(96) px(79);
     }

@@ -52,7 +52,7 @@ export default {
     margin-bottom: px(12);
     span {
       padding-left: px(56);
-      background: url("../../../../assets/image/video.png") no-repeat left center;
+      background: url("../../image/video.png") no-repeat left center;
       background-size: px(44) px(27);
     }
   }
@@ -74,7 +74,7 @@ export default {
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      background: url("../../../../assets/image/video_button.png") no-repeat center center;
+      background: url("../../image/video_button.png") no-repeat center center;
       background-size: px(100) px(100);
       width: px(100);
       height: px(100);

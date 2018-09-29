@@ -26,7 +26,7 @@ header {
     display: block;
     width: px(100);
     height: px(88);
-    background: url("../../../../assets/image/back.png") no-repeat center center;
+    background: url("../../image/back.png") no-repeat center center;
     background-size: px(36) px(48);
   }
   .date {
@@ -37,7 +37,7 @@ header {
     width: px(100);
     height: px(88);
     border: none;
-    background: url("../../../../assets/image/date.png") no-repeat center center;
+    background: url("../../image/date.png") no-repeat center center;
     background-size: px(48) px(44);
   }
   .title{

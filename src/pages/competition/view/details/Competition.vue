@@ -46,7 +46,7 @@ export default {
   padding: 0 px(42);
   width: 100%;
   height: px(400);
-  background: url("../../../../assets/image/bg_saishi.png")
+  background: url("../../image/bg_saishi.png")
     no-repeat center center;
   background-size: 100% px(400);
 
@@ -68,7 +68,7 @@ export default {
       color: #ffffff;
       font-weight: 100;
       padding-left: px(38);
-      background: url("../../../../assets/image/location.png") no-repeat left
+      background: url("../../image/location.png") no-repeat left
         center;
       background-size: px(24) px(26);
     }
