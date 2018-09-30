@@ -37,14 +37,16 @@
     .rankingNumber {
       width: px(58);
       flex-shrink: 0;
+      flex-flow: 0;
       font-size: px(36);
       color: #333;
-      font-family: 'BigYoungBoldGB2.0';
+      font-family: "BigYoungBoldGB2.0";
     }
     .state {
       width: px(88);
       height: 100%;
       flex-shrink: 0;
+      flex-flow: 0;
       background-repeat: no-repeat;
       background-position: left center;
       background-size: auto px(36);
@@ -62,13 +64,15 @@
       }
     }
     .integral {
-      width: px(130);
+      width: px(100);
       flex-shrink: 0;
+      flex-flow: 0;
       text-align: center;
     }
     .totalIntegral {
-      width: px(130);
+      width: px(120);
       flex-shrink: 0;
+      flex-flow: 0;
       text-align: center;
     }
     .go {
@@ -85,13 +89,16 @@
       height: px(76);
       color: #999;
       font-size: px(24);
-      .rankingNumber{
+      .rankingNumber {
         font-size: px(24);
-      color: #999;
-      font-family: PingFang
+        color: #999;
+        font-family: PingFang;
       }
       .person {
         justify-content: center;
+      }
+      .go {
+        background: none;
       }
     }
   }

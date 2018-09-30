@@ -5,6 +5,7 @@ import Details from './view/details/index.vue'
 import Change from './view/change/index.vue'
 import List from './view/list/index.vue'
 import Ranking from './view/ranking/index.vue'
+import Date from './view/date/index.vue'
 
 Vue.use(Router)
 
@@ -26,9 +27,13 @@ export default new Router({
       component: List
     },
     {
-      path: '/details',
+      path: '/details/:id',
       name: 'details',
       component: Details
+    }, {
+      path: '/date',
+      name: 'date',
+      component: Date
     },
     {
       path: '/ranking',

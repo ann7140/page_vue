@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderTop></HeaderTop>
+    <HeaderTop left="close" content="赛程日历"></HeaderTop>
 
     <!-- 赛程日历 列表 -->
     <List></List>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import HeaderTop from './Header'
+import HeaderTop from '../../components/Header'
 import List from './List'
 
 export default {

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <HeaderTop></HeaderTop>
+    <HeaderTop content="排名" right=""></HeaderTop>
     <TabHeader></TabHeader>
     <List></List>
   </div>
 </template>
 
 <script>
-import HeaderTop from './Header'
+import HeaderTop from '../../components/Header'
 import TabHeader from './TabHeader'
 import List from './List'
 

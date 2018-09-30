@@ -1,6 +1,13 @@
 <template>
   <div>
-    <HeaderTop></HeaderTop>
+    <HeaderTop>
+      <template slot="title">
+<h2 class="title" >
+        <img src="https://img.zcool.cn/community/01fea155430a2b0000019ae94364d6.jpg@2o.jpg" alt="">
+      </h2>
+      </template>
+
+    </HeaderTop>
 
     <ul class="site">
       <li class="active">台湾站</li>
@@ -20,7 +27,7 @@
         <div class="buttonWrap">
           <span>赛事信息</span>
         </div>
-        <div class="buttonWrap">
+        <div class="buttonWrap" @click="goToRanking">
           <span>总积分排名</span>
         </div>
       </div>
@@ -52,7 +59,7 @@
 </template>
 
 <script>
-import HeaderTop from './Header'
+import HeaderTop from '../../components/Header'
 import Competition from './Competition'
 import Video from './Video'
 import Weather from './Weather'
@@ -66,6 +73,11 @@ export default {
     Competition,
     Video,
     Weather
+  },
+  methods: {
+    goToRanking () {
+      this.$router.push({ 'name': 'ranking' })
+    }
   }
 }
 </script>
@@ -119,21 +131,18 @@ export default {
       }
     }
     &:nth-of-type(1) span::before {
-      background: url("../../image/list_button1.png") no-repeat center
-        center;
+      background: url("../../image/list_button1.png") no-repeat center center;
       background-size: px(96) px(79);
     }
     &:nth-of-type(2) span::before {
-      background: url("../../image/list_button2.png") no-repeat center
-        center;
+      background: url("../../image/list_button2.png") no-repeat center center;
       background-size: px(96) px(79);
     }
     &:nth-of-type(3) {
       border: none;
     }
     &:nth-of-type(3) span::before {
-      background: url("../../image/list_button3.png") no-repeat center
-        center;
+      background: url("../../image/list_button3.png") no-repeat center center;
       background-size: px(96) px(79);
     }
   }
@@ -164,7 +173,7 @@ export default {
     margin-right: px(16);
   }
   .countDown {
-    margin-top:px(-5);
+    margin-top: px(-5);
     .title {
       font-size: px(36);
       color: #333;
