@@ -1,0 +1,84 @@
+<template>
+  <!-- 手机、优惠劵 -->
+  <div class="otherThings">
+    <div class="phoneWrap border-bottom">
+      <div class="phoneBox">
+        <div class="phone">
+          <span class="text">手机号码：</span>
+          <em class="number">15000766043</em>
+          <input type="number" value="15000766043">
+        </div>
+        <div class="amend">修改</div>
+      </div>
+      <span class="info">手机号仅用于生成订单，兑换码降不再以短信发送</span>
+    </div>
+    <div class="coupon">
+      <span class="name">优惠劵</span>
+      <span class="button">暂无可用</span>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+@import "~@/assets/style/varibles.scss";
+.otherThings {
+  margin-top:px(12);
+  padding: 0 px(30);
+  background: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  .phoneWrap {
+    &::before{
+      border-bottom-color: #ddd;
+    }
+    .phoneBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: px(20);
+      line-height: px(44);
+      // .phone {
+      // }
+      .amend {
+        font-size: px(28);
+        color: #e82700;
+        background: url("../image/icon_edit.png") no-repeat left top px(7);
+        background-size: px(24) px(26);
+        padding-left: px(30);
+      }
+      .text,
+      .number {
+        font-size: px(32);
+      }
+      .number {
+        font-style: normal;
+      }
+      input {
+        display: none;
+      }
+    }
+    .info {
+      display: block;
+      line-height: px(30);
+      font-size: px(24);
+      color: #999;
+      padding-top: px(16);
+      padding-bottom: px(24);
+    }
+  }
+
+  .coupon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: px(100);
+    .name{
+      font-size: px(28);
+      color: #333;
+    }
+    .button{
+      font-size: px(24);
+      color: #999;
+    }
+  }
+}
+</style>

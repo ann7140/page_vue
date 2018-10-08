@@ -51,10 +51,14 @@ export default {
 @import "~@/assets/style/varibles.scss";
 
 header {
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   height: px(88);
   background: #fff;
   &.border-bottom::before {
@@ -72,7 +76,7 @@ header {
       background-size: px(36) px(48);
     }
     &.close {
-      background: url("../image/icon_close.png") no-repeat center center;
+      // background: url("../image/icon_close.png") no-repeat center center;
       background-size: px(52) px(52);
     }
   }
@@ -90,7 +94,7 @@ header {
       display: block;
       width: 100%;
       height: 100%;
-      background: url("../image/date.png") no-repeat center center;
+      // background: url("../image/date.png") no-repeat center center;
       background-size: px(48) px(44);
     }
     .today {
