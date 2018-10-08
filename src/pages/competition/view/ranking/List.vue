@@ -79,7 +79,7 @@
       flex-shrink: 0;
       width: px(42);
       height: 100%;
-      background-image: url("../../image/go.png");
+      background-image: url("../../image/icon_right.png");
       background-repeat: no-repeat;
       background-position: left px(12) center;
       background-size: px(12) px(20);
