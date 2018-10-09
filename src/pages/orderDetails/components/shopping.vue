@@ -1,24 +1,13 @@
 <template>
   <div class="carTypeWrap">
-    <div>
-      <h3 class="border-bottom">高级娱乐车</h3>
+    <div v-for="(item,index) in parkDicData" :key="item.id">
+      <h3 class="border-bottom">{{item.name}}</h3>
       <div class="countWrap">
         <span class="text">购买数量</span>
         <div class="countBox">
-          <em :class="{disable:disable}">-</em>
-          <strong>000</strong>
-          <em>+</em>
-        </div>
-      </div>
-    </div>
-    <div>
-      <h3 class="border-bottom">高级娱乐车</h3>
-      <div class="countWrap">
-        <span class="text">购买数量</span>
-        <div class="countBox">
-          <em :class="{disable:disable}">-</em>
-          <strong>000</strong>
-          <em>+</em>
+          <em :class="{disable:  item.count===0 }" @click="prevClick(index)">-</em>
+          <strong>{{item.count}}</strong>
+          <em @click="nextClick(index)">+</em>
         </div>
       </div>
     </div>
@@ -29,7 +18,36 @@
 export default {
   data () {
     return {
-      disable: true
+      disable: true,
+      parkDicData: this.parkDic
+    }
+  },
+  props: {
+    parkDic: Array
+  },
+  computed: {
+    totalFn: function () {
+      return this.parkDicData.reduce((prev, t) => {
+        return prev + t.price * t.count
+      }, 0)
+    }
+  },
+  methods: {
+    prevClick (index) {
+      let count = this.parkDicData[index].count
+      if (count <= 0) {
+        count = 0
+      } else {
+        count -= 1
+      }
+      this.$set(this.parkDicData[index], 'count', count)
+      this.$emit('totalFnCount', this.totalFn)
+    },
+    nextClick (index) {
+      let count = this.parkDicData[index].count
+      count += 1
+      this.$set(this.parkDicData[index], 'count', count)
+      this.$emit('totalFnCount', this.totalFn)
     }
   }
 }

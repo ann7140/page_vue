@@ -5,10 +5,10 @@
       <div class="phoneBox">
         <div class="phone">
           <span class="text">手机号码：</span>
-          <em class="number">15000766043</em>
-          <input type="number" value="15000766043">
+          <em class="number" v-if="isShow" v-text="phoneData"></em>
+          <input v-else type="number"  v-model="phoneData">
         </div>
-        <div class="amend">修改</div>
+        <div class="amend" @click="amend" v-text="isShow ?'修改':'完成'"></div>
       </div>
       <span class="info">手机号仅用于生成订单，兑换码降不再以短信发送</span>
     </div>
@@ -19,15 +19,36 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'orderPhone',
+
+  data () {
+    return {
+      isShow: true,
+      phoneData: this.phone
+    }
+  },
+  props: {
+    phone: String
+  },
+  methods: {
+    amend () {
+      this.isShow = !this.isShow
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 @import "~@/assets/style/varibles.scss";
 .otherThings {
-  margin-top:px(12);
+  margin-top: px(12);
   padding: 0 px(30);
   background: #fff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   .phoneWrap {
-    &::before{
+    &::before {
       border-bottom-color: #ddd;
     }
     .phoneBox {
@@ -53,7 +74,12 @@
         font-style: normal;
       }
       input {
-        display: none;
+        line-height: px(30);
+        padding: px(5) 0;
+        font-size: px(28);
+        margin: 0;
+        outline: 1px solid #ddd;
+        width: px(300);
       }
     }
     .info {
@@ -66,16 +92,16 @@
     }
   }
 
-  .coupon{
+  .coupon {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: px(100);
-    .name{
+    .name {
       font-size: px(28);
       color: #333;
     }
-    .button{
+    .button {
       font-size: px(24);
       color: #999;
     }
