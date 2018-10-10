@@ -2,12 +2,14 @@ const pages = require('./public/vue_multipage.js')
 const px2vw = require('postcss-px-to-viewport')
 
 module.exports = {
+  baseUrl: process.env.baseUrl,
   pages,
+  outputDir: process.env.outputDir,
   devServer: {
     proxy: {
       '/api': {
         target: 'https://test.raykart.com',
-        changeOrigin: false
+        changeOrigin: true
       }
     }
   },

@@ -4,7 +4,7 @@
     <main>
       <!-- 购买的东西 -->
       <h2 class="title">胜道博大岳卡丁车俱乐部（世博源店）胜道博大岳卡丁车俱乐部（世博源店）</h2>
-      <shopping :parkDic="parkDic" @totalFnCount="componentsTotal"></shopping>
+      <shopping :parkDic="parkDic" v-if="parkDic.length" @totalFnCount="componentsTotal"></shopping>
       <otherThing :phone="phone" v-if="phone"></otherThing>
       <!-- <insurance></insurance> -->
       <info></info>
@@ -103,6 +103,8 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
+    } else {
+      alert('请求参数不全')
     }
   }
 }

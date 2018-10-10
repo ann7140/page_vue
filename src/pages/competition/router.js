@@ -1,11 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Details from './view/details/index.vue'
-import Change from './view/change/index.vue'
-import List from './view/list/index.vue'
-import Ranking from './view/ranking/index.vue'
-import Date from './view/date/index.vue'
+// import Details from './view/details/index.vue'
+// import Change from './view/change/index.vue'
+// import List from './view/list/index.vue'
+// import Ranking from './view/ranking/index.vue'
+// import Date from './view/date/index.vue'
+
+const Details = () => import('./view/details/index.vue')
+const Change = () => import('./view/change/index.vue')
+const List = () => import('./view/list/index.vue')
+const Ranking = () => import('./view/ranking/index.vue')
+const Date = () => import('./view/date/index.vue')
 
 Vue.use(Router)
 
