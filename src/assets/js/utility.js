@@ -27,7 +27,13 @@ function setupWebViewJavascriptBridge (callback) {
   setTimeout(function () { document.documentElement.removeChild(WVJBIframe) }, 0)
 }
 
+function log (res) {
+  /* eslint-disable no-console */
+  console.log(res)
+}
+
 export {
   getHrefData,
-  setupWebViewJavascriptBridge
+  setupWebViewJavascriptBridge,
+  log
 }

@@ -22,7 +22,8 @@
 import axios from 'axios'
 import {
   getHrefData,
-  setupWebViewJavascriptBridge
+  setupWebViewJavascriptBridge,
+  log
 } from '@/assets/js/utility.js'
 
 import otherThing from './components/otherThing.vue'
@@ -73,12 +74,12 @@ export default {
           {
             parking_id: orderData['parking_id'],
             price: _this.total,
-            user_login: _this.parking_name, // 用户名
+            user_login: _this.parking_name,
             iphone: _this.phone,
-            data: _this.parkDic // 选择的数据信息
+            data: _this.parkDic
           },
           function (response) {
-            console.log('js得到的返回值', response)
+            log('js得到的返回值', response)
           }
         )
       })
@@ -138,7 +139,7 @@ export default {
           }, 0)
         })
         .catch(function (error) {
-          console.log(error)
+          log(error)
         })
     } else {
       alert('参数不全')
