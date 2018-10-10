@@ -56,13 +56,6 @@ export default {
       e.preventDefault()
       const orderData = getHrefData()
       const _this = this
-      console.log({
-        parking_id: orderData['parking_id'],
-        price: _this.total,
-        user_login: _this.parking_name, // 用户名
-        iphone: _this.phone,
-        data: _this.parkDic // 选择的数据信息
-      })
 
       /* 与OC交互的所有JS方法都要放在此处注册，才能调用通过JS调用OC或者让OC调用这里的JS */
       setupWebViewJavascriptBridge(function (bridge) {
@@ -140,7 +133,6 @@ export default {
               }
             }
           }
-          console.log(_this.parkDic)
           _this.total = _this.parkDic.reduce((prev, t) => {
             return prev + t.price * t.mount
           }, 0)

@@ -40,9 +40,6 @@ export default {
     goToDate () {
       this.$router.push({ name: 'date' })
     }
-  },
-  mounted () {
-    // console.log(this.$router)
   }
 }
 </script>

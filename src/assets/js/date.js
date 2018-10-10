@@ -31,15 +31,12 @@ function daysList (year, month) {
   const lastDay = getLastDayInMonth(year, month)
   const days = daysInMonth(year, month)
 
-  console.log(firstDay, lastDay, days)
-
   for (let i = 0; i < firstDay; i++) {
     list.push(0)
   }
   for (let i = 0; i < days; i++) {
     list.push(i + 1)
   }
-  console.log('lastDay', lastDay)
   for (let i = 0; i < (6 - lastDay); i++) {
     list.push(0)
   }

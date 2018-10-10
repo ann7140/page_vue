@@ -26,8 +26,6 @@ entries.forEach((file) => {
     template: './' + pageHtml,
     filename: `${pageName}/index.html`
   }
-
-  // console.log(pages)
 })
 
 module.exports = pages
