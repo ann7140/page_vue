@@ -58,6 +58,7 @@ export default {
       })
 
       const todayObj = this.getToday()
+      console.log(todayObj)
       if (todayObj.year === this.year && todayObj.month === this.month) {
         for (let i = 0; i < list.length; i++) {
           if (list[i].count === todayObj.day) {
@@ -81,7 +82,7 @@ export default {
       return {
         year: date.getFullYear(),
         month: date.getMonth() + 1,
-        day: date.getDay()
+        day: date.getDate()
       }
     },
     prevMonth () {
