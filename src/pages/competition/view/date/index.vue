@@ -91,7 +91,6 @@ export default {
       } else {
         this.month = this.month - 1
       }
-      this.days()
     },
     nextMonth () {
       if (this.month + 1 > 12) {
@@ -100,7 +99,6 @@ export default {
       } else {
         this.month = this.month + 1
       }
-      this.days()
     }
   }
 }

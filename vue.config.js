@@ -1,4 +1,4 @@
-const pages = require('./public/vue_multipage.js')
+const pages = require('./utils/vue_multipage.js')
 const px2vw = require('postcss-px-to-viewport')
 
 module.exports = {

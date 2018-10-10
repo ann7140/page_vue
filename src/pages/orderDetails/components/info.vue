@@ -17,7 +17,7 @@
       <h3 class="title">购买须知</h3>
       <div class="content">
         <div class="name">使用时间</div>
-        <div class="content">平日（周一至周五，节假日除外</div>
+        <div class="content">平日（周一至周五，节假日除外）</div>
       </div>
 
       <div class="content">
@@ -33,7 +33,7 @@
       </div>
       <div class="content">
         <div class="name">商家服务</div>
-        <div class="content">免费提供wifi</div>
+        <div class="content">免费提供Wi-Fi</div>
         <div class="content">停车位信息详询商家</div>
         <div class="content">免费提供头盔、手套、头盔等安全护具</div>
       </div>

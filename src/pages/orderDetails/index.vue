@@ -1,29 +1,30 @@
 <template>
   <div class="main">
-    <HeaderTop ></HeaderTop>
     <main>
       <!-- 购买的东西 -->
-      <h2 class="title">胜道博大岳卡丁车俱乐部（世博源店）胜道博大岳卡丁车俱乐部（世博源店）</h2>
+      <h2 class="title">{{parking_name}}</h2>
       <shopping :parkDic="parkDic" v-if="parkDic.length" @totalFnCount="componentsTotal"></shopping>
       <otherThing :phone="phone" v-if="phone"></otherThing>
       <!-- <insurance></insurance> -->
       <info></info>
     </main>
-    <div class="paymentWrap border-top">
+    <div class="paymentWrap border-top" v-if="total">
       <div class="info">
         <span class="money">实付款 ¥{{total}}</span>
         <span class="integral">支付成功获得{{total}}积分</span>
       </div>
-      <div class="buttonPay">去支付</div>
+      <div class="buttonPay" @click="payButton" id="pay">去支付</div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import { getHrefData } from '@/assets/js/utility.js'
+import {
+  getHrefData,
+  setupWebViewJavascriptBridge
+} from '@/assets/js/utility.js'
 
-import HeaderTop from './components/Header.vue'
 import otherThing from './components/otherThing.vue'
 import shopping from './components/shopping.vue'
 import info from './components/info.vue'
@@ -35,12 +36,13 @@ export default {
       // 控制减号按钮
       disable: true,
       phone: '',
+      parking_name: '',
+      user_login: '',
       parkDic: [],
       total: 0
     }
   },
   components: {
-    HeaderTop,
     shopping,
     otherThing,
     insurance,
@@ -49,20 +51,63 @@ export default {
   methods: {
     componentsTotal (total) {
       this.total = total
+    },
+    payButton (e) {
+      e.preventDefault()
+      const orderData = getHrefData()
+      const _this = this
+      console.log({
+        parking_id: orderData['parking_id'],
+        price: _this.total,
+        user_login: _this.parking_name, // 用户名
+        iphone: _this.phone,
+        data: _this.parkDic // 选择的数据信息
+      })
+
+      /* 与OC交互的所有JS方法都要放在此处注册，才能调用通过JS调用OC或者让OC调用这里的JS */
+      setupWebViewJavascriptBridge(function (bridge) {
+        // 把WEB中要注册的方法注册到bridge里面  ios->web
+        bridge.registerHandler('iosprice', function (data, responseCallback) {
+          var responseData = {
+            'Javascript Says': 'Right back atcha!'
+          }
+          responseCallback(responseData)
+        })
+
+        // web -> ios
+        bridge.callHandler(
+          'iosallprice',
+          {
+            parking_id: orderData['parking_id'],
+            price: _this.total,
+            user_login: _this.parking_name, // 用户名
+            iphone: _this.phone,
+            data: _this.parkDic // 选择的数据信息
+          },
+          function (response) {
+            console.log('js得到的返回值', response)
+          }
+        )
+      })
     }
   },
   created () {
     const _this = this
     // 订单详情 URL
     const orderData = getHrefData()
+
     if (orderData['parkDic']) {
-      let parkDic = JSON.parse(decodeURI(orderData['parkDic']))
+      let dataUrl = decodeURIComponent(orderData['parkDic'])
+      dataUrl = dataUrl.replace(/[\\n|' ']/g, '')
+
+      let parkDic = JSON.parse(dataUrl)
+
       let parkRegroup = []
 
       for (let key in parkDic) {
         parkRegroup.push({
           id: key,
-          count: parkDic[key]
+          mount: parkDic[key]
         })
       }
       orderData['parkDic'] = parkRegroup
@@ -78,33 +123,33 @@ export default {
         })
         .then(function (res) {
           _this.phone = res.data.data.phone
-          console.log(typeof res.data.data.phone, _this.phone)
+          _this.parking_name = res.data.data.parking_name
+          _this.user_login = res.data.data.user_login
           const ajaxParkDic = res.data.data.fare
           const parkDic = orderData['parkDic']
-
           if (!parkDic) return null
-
           for (let i = 0; i < parkDic.length; i++) {
             for (let j = 0; j < ajaxParkDic.length; j++) {
               if (ajaxParkDic[j].id === parkDic[i].id) {
                 _this.parkDic.push({
-                  ...parkDic[i],
+                  ...ajaxParkDic[j],
+                  mount: parkDic[i].mount,
                   price: ajaxParkDic[j]['attr_price'],
-                  name: ajaxParkDic[j]['attr_name']
+                  name: ajaxParkDic[j]['fare_type']
                 })
               }
             }
           }
-
+          console.log(_this.parkDic)
           _this.total = _this.parkDic.reduce((prev, t) => {
-            return prev + t.price * t.count
+            return prev + t.price * t.mount
           }, 0)
         })
         .catch(function (error) {
           console.log(error)
         })
     } else {
-      alert('请求参数不全')
+      alert('参数不全')
     }
   }
 }
@@ -113,7 +158,7 @@ export default {
 <style lang="scss" scoped>
 @import "~@/assets/style/varibles.scss";
 main {
-  padding-top: px(88);
+  // padding-top: px(88);
   background: #f8f8f8;
   padding-bottom: px(108);
   .title {

@@ -10,7 +10,7 @@
         </div>
         <div class="amend" @click="amend" v-text="isShow ?'修改':'完成'"></div>
       </div>
-      <span class="info">手机号仅用于生成订单，兑换码降不再以短信发送</span>
+      <span class="info">手机号仅用于生成订单，兑换码将不再以短信发送</span>
     </div>
     <div class="coupon">
       <span class="name">优惠劵</span>

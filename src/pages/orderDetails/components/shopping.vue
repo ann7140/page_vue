@@ -6,7 +6,7 @@
         <span class="text">购买数量</span>
         <div class="countBox">
           <em :class="{disable:  item.count===0 }" @click="prevClick(index)">-</em>
-          <strong>{{item.count}}</strong>
+          <strong>{{item.mount}}</strong>
           <em @click="nextClick(index)">+</em>
         </div>
       </div>
@@ -28,25 +28,25 @@ export default {
   computed: {
     totalFn: function () {
       return this.parkDicData.reduce((prev, t) => {
-        return prev + t.price * t.count
+        return prev + t.price * t.mount
       }, 0)
     }
   },
   methods: {
     prevClick (index) {
-      let count = this.parkDicData[index].count
-      if (count <= 0) {
-        count = 0
+      let mount = this.parkDicData[index].mount
+      if (mount <= 0) {
+        mount = 0
       } else {
-        count -= 1
+        mount -= 1
       }
-      this.$set(this.parkDicData[index], 'count', count)
+      this.$set(this.parkDicData[index], 'count', mount)
       this.$emit('totalFnCount', this.totalFn)
     },
     nextClick (index) {
-      let count = this.parkDicData[index].count
-      count += 1
-      this.$set(this.parkDicData[index], 'count', count)
+      let mount = this.parkDicData[index].mount
+      mount += 1
+      this.$set(this.parkDicData[index], 'mount', mount)
       this.$emit('totalFnCount', this.totalFn)
     }
   }
