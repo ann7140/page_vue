@@ -15,6 +15,7 @@
       </div>
       <div class="buttonPay" @click="payButton" id="pay">去支付</div>
     </div>
+    <discount></discount>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import otherThing from './components/otherThing.vue'
 import shopping from './components/shopping.vue'
 import info from './components/info.vue'
 import insurance from './components/insurance.vue'
+import discount from './components/discount.vue'
 
 export default {
   data () {
@@ -47,7 +49,8 @@ export default {
     shopping,
     otherThing,
     insurance,
-    info
+    info,
+    discount
   },
   methods: {
     componentsTotal (total) {

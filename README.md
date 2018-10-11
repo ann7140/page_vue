@@ -37,3 +37,7 @@ npm run lint
 ## 与 ios 交互：WebViewJavascriptBridge
 
 链接：https://github.com/marcuswestin/WebViewJavascriptBridge
+
+## 详情页：
+
+参数：/orderDetails?parking_id=1&login_uid=237&parkDic={%20%221%22%20:%201,%20%223%22%20:%202%20}
