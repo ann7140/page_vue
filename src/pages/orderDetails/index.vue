@@ -15,7 +15,7 @@
       </div>
       <div class="buttonPay" @click="payButton" id="pay">去支付</div>
     </div>
-    <discount></discount>
+    <discount v-show="discountShow"></discount>
   </div>
 </template>
 

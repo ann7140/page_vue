@@ -14,7 +14,8 @@
     </div>
     <div class="coupon">
       <span class="name">优惠劵</span>
-      <span class="button">暂无可用</span>
+      <!-- <span class="button  use">1张可用</span> -->
+      <span class="button  noUse">暂无可用</span>
     </div>
   </div>
 </template>
@@ -26,7 +27,10 @@ export default {
   data () {
     return {
       isShow: true,
-      phoneData: this.phone
+      phoneData: this.phone,
+
+      // 控制优惠劵显示
+      discountShow: false
     }
   },
   props: {
@@ -47,63 +51,72 @@ export default {
   padding: 0 px(30);
   background: #fff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-  .phoneWrap {
-    &::before {
-      border-bottom-color: #ddd;
-    }
-    .phoneBox {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: px(20);
-      line-height: px(44);
-      // .phone {
-      // }
-      .amend {
-        font-size: px(28);
-        color: #e82700;
-        background: url("../image/icon_edit.png") no-repeat left top px(7);
-        background-size: px(24) px(26);
-        padding-left: px(30);
-      }
-      .text,
-      .number {
-        font-size: px(32);
-      }
-      .number {
-        font-style: normal;
-      }
-      input {
-        line-height: px(30);
-        padding: px(5) 0;
-        font-size: px(28);
-        margin: 0;
-        outline: 1px solid #ddd;
-        width: px(300);
-      }
-    }
-    .info {
-      display: block;
-      line-height: px(30);
-      font-size: px(24);
-      color: #999;
-      padding-top: px(16);
-      padding-bottom: px(24);
-    }
-  }
+}
 
-  .coupon {
+.phoneWrap {
+  &::before {
+    border-bottom-color: #ddd;
+  }
+  .phoneBox {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: px(100);
-    .name {
+    padding-top: px(20);
+    line-height: px(44);
+    // .phone {
+    // }
+    .amend {
       font-size: px(28);
-      color: #333;
+      color: #e82700;
+      background: url("../image/icon_edit.png") no-repeat left top px(7);
+      background-size: px(24) px(26);
+      padding-left: px(30);
     }
-    .button {
-      font-size: px(24);
+    .text,
+    .number {
+      font-size: px(32);
+    }
+    .number {
+      font-style: normal;
+    }
+    input {
+      line-height: px(30);
+      padding: px(5) 0;
+      font-size: px(28);
+      margin: 0;
+      outline: 1px solid #ddd;
+      width: px(300);
+    }
+  }
+  .info {
+    display: block;
+    line-height: px(30);
+    font-size: px(24);
+    color: #999;
+    padding-top: px(16);
+    padding-bottom: px(24);
+  }
+}
+
+.coupon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: px(100);
+  .name {
+    font-size: px(28);
+    color: #333;
+  }
+  .button {
+    font-size: px(24);
+    &.noUse {
       color: #999;
+    }
+    &.use {
+      color: #e82700;
+      padding-right: px(40);
+      background: url("../image/icon_right.png") no-repeat right px(10) center;
+    background-size: px(18) px(24);
     }
   }
 }
