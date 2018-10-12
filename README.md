@@ -40,4 +40,4 @@ npm run lint
 
 ## 详情页：
 
-参数：/orderDetails?parking_id=1&login_uid=237&parkDic={%20%221%22%20:%201,%20%223%22%20:%202%20}
+参数：/order-details?parking_id=1&login_uid=237&parkDic={%20%221%22%20:%201,%20%223%22%20:%202%20}

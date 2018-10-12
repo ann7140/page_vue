@@ -3,13 +3,15 @@ import competition from './index.vue'
 
 import '@/assets/style/public.scss'
 import '@/assets/style/border.scss'
-import router from './router.js'
+
+// console.log(process.env.VUE_APP_BASE_URL)
+// import router from './router.js'
 // import store from './store'
 
 Vue.config.productionTip = false
 
 new Vue({
-  router,
+  // router,
   // store,
   render: h => h(competition)
 }).$mount('#app')
