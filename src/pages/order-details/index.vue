@@ -1,14 +1,16 @@
 <template>
   <div class="main">
+    <div>url:::::{{url}}</div>
+    <div>parkDic::::::{{parkDic}}</div>
     <main>
       <!-- 购买的东西 -->
       <h2 class="title">{{parking_name}}</h2>
       <shopping :parkDic="parkDic" v-if="parkDic.length" @totalFnCount="componentsTotal"></shopping>
-      <otherThing :phone="phone" v-if="phone"></otherThing>
+      <otherThing :phone="phone" ></otherThing>
       <!-- <insurance></insurance> -->
       <info></info>
     </main>
-    <div class="paymentWrap border-top" v-if="total">
+    <div class="paymentWrap border-top">
       <div class="info">
         <span class="money">实付款 ¥{{total}}</span>
         <span class="integral">支付成功获得{{total}}积分</span>
@@ -21,6 +23,7 @@
 
 <script>
 import axios from 'axios'
+import { host } from '@/assets/js/config.js'
 import {
   getHrefData,
   setupWebViewJavascriptBridge,
@@ -42,7 +45,10 @@ export default {
       parking_name: '',
       user_login: '',
       parkDic: [],
-      total: 0
+      total: 0,
+      discountShow: false,
+
+      url: ''
     }
   },
   components: {
@@ -86,33 +92,38 @@ export default {
           }
         )
       })
-    }
-  },
-  created () {
-    const _this = this
-    // 订单详情 URL
-    const orderData = getHrefData()
+    },
 
-    if (orderData['parkDic']) {
-      let dataUrl = decodeURIComponent(orderData['parkDic'])
+    dealParkDic (url) {
+      let dataUrl = decodeURIComponent(url)
       dataUrl = dataUrl.replace(/[\\n|' ']/g, '')
-
       let parkDic = JSON.parse(dataUrl)
-
       let parkRegroup = []
-
       for (let key in parkDic) {
         parkRegroup.push({
           id: key,
           mount: parkDic[key]
         })
       }
-      orderData['parkDic'] = parkRegroup
-    }
 
+      return parkRegroup
+    }
+  },
+  created () {
+    this.url = location.href
+
+    this.dd = getHrefData()
+
+    const _this = this
+    // 订单详情 URL
+    const orderData = getHrefData()
+
+    if (orderData['parkDic']) {
+      orderData['parkDic'] = _this.dealParkDic(orderData['parkDic'])
+    }
     if (orderData['login_uid'] && orderData['parking_id']) {
       axios
-        .get('/api/parking/parkingOrder', {
+        .get(host + '/api/parking/parkingOrder', {
           params: {
             parking_id: orderData['parking_id'],
             login_uid: orderData['login_uid']
@@ -124,10 +135,11 @@ export default {
           _this.user_login = res.data.data.user_login
           const ajaxParkDic = res.data.data.fare
           const parkDic = orderData['parkDic']
+
           if (!parkDic) return null
           for (let i = 0; i < parkDic.length; i++) {
             for (let j = 0; j < ajaxParkDic.length; j++) {
-              if (ajaxParkDic[j].id === parkDic[i].id) {
+              if (ajaxParkDic[j].id === Number(parkDic[i].id)) {
                 _this.parkDic.push({
                   ...ajaxParkDic[j],
                   mount: parkDic[i].mount,
@@ -138,6 +150,7 @@ export default {
             }
           }
           _this.total = _this.parkDic.reduce((prev, t) => {
+            console.log(prev, t.price, t.mount)
             return prev + t.price * t.mount
           }, 0)
         })

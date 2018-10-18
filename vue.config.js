@@ -7,8 +7,8 @@ module.exports = {
   outputDir: process.env.outputDir,
   devServer: {
     proxy: {
-      '/api': {
-        target: 'https://test.raykart.com',
+      '^/api': {
+        target: 'http://192.168.0.109',
         changeOrigin: true
       }
     }

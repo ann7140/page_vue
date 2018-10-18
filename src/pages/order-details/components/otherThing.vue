@@ -6,9 +6,9 @@
         <div class="phone">
           <span class="text">手机号码：</span>
           <em class="number" v-if="isShow" v-text="phoneData"></em>
-          <input v-else type="number"  v-model="phoneData">
+          <input v-else type="text" placeholder="请填写手机号码"  v-model="phoneData">
         </div>
-        <div class="amend" @click="amend" v-text="isShow ?'修改':'完成'"></div>
+        <div class="amend" @click="amend" v-text="state[stateText]"></div>
       </div>
       <span class="info">手机号仅用于生成订单，兑换码将不再以短信发送</span>
     </div>
@@ -21,14 +21,19 @@
 </template>
 
 <script>
+
 export default {
   name: 'orderPhone',
 
   data () {
     return {
+      state: {
+        nothing: '添加',
+        edit: '编辑',
+        end: '完成'
+      },
       isShow: true,
       phoneData: this.phone,
-
       // 控制优惠劵显示
       discountShow: false
     }
@@ -36,6 +41,21 @@ export default {
   props: {
     phone: String
   },
+  computed: {
+    // phoneData
+    stateText (vm) {
+      let text = ''
+      if (this.phoneData === '' && this.isShow === true) {
+        text = 'nothing'
+      } else if (this.phoneData !== '' && this.isShow === false) {
+        text = 'end'
+      } else {
+        text = 'edit'
+      }
+      return text
+    }
+  },
+
   methods: {
     amend () {
       this.isShow = !this.isShow
