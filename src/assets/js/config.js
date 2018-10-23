@@ -1,1 +1,1 @@
-export const host = 'https://192.168.0.109'
+export const host = 'http://192.168.0.109'

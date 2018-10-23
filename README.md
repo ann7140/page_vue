@@ -41,3 +41,7 @@ npm run lint
 ## 详情页：
 
 参数：/order-details?parking_id=21&login_uid=238&parkDic=%7B%0A%20%20"6"%20:%201%0A%7D
+
+### 测试：
+
+http://192.168.0.132/public/raykartapp/view/order-details/?parking_id=21&login_uid=238&parkDic=%7B%0A%20%20%226%22%20:%201%0A%7D
